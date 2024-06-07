@@ -37,10 +37,11 @@ jobs:
 
     - name: Build and Push Docker Image
       env:
-        IMAGE_NAME: ${{ secrets.AZURE_ACR_NAME }}/myapp:${{ github.sha }}
+        IMAGE_NAME: my-spring-boot-app 
       run: |
         docker build -t $IMAGE_NAME .
-        docker push $IMAGE_NAME
+        docker tag $IMAGE_NAME ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
+        docker push ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
 
     # - name: Set up kubectl
     #   uses: azure/setup-kubectl@v3
