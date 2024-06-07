@@ -23,13 +23,13 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    # - name: Log in to Azure
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # - name: Set up Docker Buildx
-    #   uses: docker/setup-buildx-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
     - name: Log in to Azure Container Registry
       run: |
@@ -43,12 +43,12 @@ jobs:
         docker tag $IMAGE_NAME ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
         docker push ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
 
-    # - name: Set up kubectl
-    #   uses: azure/setup-kubectl@v3
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
 
-    # - name: Get AKS credentials
-    #   run: |
-    #     az aks get-credentials --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ${{ secrets.AZURE_AKS_CLUSTER }}
+    - name: Get AKS credentials
+      run: |
+        az aks get-credentials --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ${{ secrets.AZURE_AKS_CLUSTER }}
 
     # - name: Deploy to AKS
     #   env:
