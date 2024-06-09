@@ -67,4 +67,4 @@ jobs:
       # env:
       #   IMAGE_NAME: ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
       run: |
-        kubectl apply -f deployment.yaml
+        kubectl apply -f deployment.yaml --namespace ingress-nginx
