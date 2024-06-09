@@ -59,6 +59,10 @@ jobs:
       env: 
         BuildNumber: ${{ github.sha }} 
 
+    - name: update tokens 
+      run: |
+        bash -c "sed -i 's/BuildNumber/${{ github.sha }}/g'  deployment.yaml"
+
     - name: Deploy to AKS
       # env:
       #   IMAGE_NAME: ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
