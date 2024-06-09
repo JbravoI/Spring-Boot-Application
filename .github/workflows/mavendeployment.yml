@@ -50,8 +50,8 @@ jobs:
       run: |
         az aks get-credentials --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ${{ secrets.AZURE_AKS_CLUSTER }}
 
-    # - name: Deploy to AKS
-    #   env:
-    #     IMAGE_NAME: ${{ secrets.AZURE_ACR_NAME }}.azurecr.io/myapp:${{ github.sha }}
-    #   run: |
-    #     kubectl set image deployment/myapp myapp=$IMAGE_NAME
+    - name: Deploy to AKS
+      env:
+        IMAGE_NAME: ${{ secrets.AZURE_ACR_NAME }}/my-spring-boot-app:${{ github.sha }}
+      run: |
+        kubectl set image deployment/my-spring-boot-app my-spring-boot-app=$IMAGE_NAME
