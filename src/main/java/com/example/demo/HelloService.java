@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class HelloService {
 
     public String getGreeting() {
-        return "This is a test for Ewuji Oluwaseyi John. Updating it using CI/CD pipeline & k8s";
+        return "This is a test for Ewuji Oluwaseyi John. working";
     }
 }
